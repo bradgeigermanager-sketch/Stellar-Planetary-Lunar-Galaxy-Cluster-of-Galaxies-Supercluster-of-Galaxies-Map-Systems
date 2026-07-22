@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/lunar-body.json",
+  "title": "Lunar Body Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference",
+    "galaxyClusterReference",
+    "galaxyReference",
+    "starSystemReference",
+    "hostPlanet",
+    "lunarOrder"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyClusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "starSystemReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "hostPlanet": {
+      "type": "object",
+      "required": [
+        "numberingSystem",
+        "order"
+      ],
+      "properties": {
+        "numberingSystem": {
+          "type": "string",
+          "enum": [
+            "all_planetary_bodies",
+            "habitable_planets_only"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "lunarOrder": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Order of the moon from its host planet."
+    }
+  },
+  "additionalProperties": false
+}
