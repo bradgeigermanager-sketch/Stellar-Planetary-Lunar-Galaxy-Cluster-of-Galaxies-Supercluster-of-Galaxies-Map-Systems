@@ -1,0 +1,358 @@
+The GitHub Pages site ias the official specification for the standard, while the JSON Schemas remain the authoritative machine-readable definitions.
+
+Documentation grows alongside the schemas:
+
+## Phase 1 – Foundation
+
+```
+docs/
+├── index.md
+├── getting-started.md
+├── hierarchy.md
+├── numbering-systems.md
+├── glossary.md
+├── changelog.md
+└── schemas/
+```
+
+### index.md
+
+The landing page.
+
+Contents:
+
+* Project overview
+* Purpose
+* Scope
+* Latest version
+* Links to all schema documentation
+* Quick Start
+* Repository structure
+
+---
+
+### getting-started.md
+
+Topics:
+
+* What the project is
+* Why JSON Schema
+* Naming conventions
+* Validation
+* Repository organization
+* First example
+
+---
+
+### hierarchy.md
+
+Describe the entire astronomical hierarchy.
+
+```
+Observable Universe
+    ↓
+Supercluster
+    ↓
+Galaxy Cluster
+    ↓
+Galaxy
+    ↓
+Star System
+    ↓
+Star
+    ├── Planet
+    │       └── Moon
+    └── Planet
+```
+
+This can become a Mermaid diagram.
+
+---
+
+### numbering-systems.md
+
+Describe:
+
+* all_planetary_bodies
+* habitable_planets_only
+* stellar numbering
+* lunar numbering
+
+Include examples.
+
+---
+
+### glossary.md
+
+Definitions such as:
+
+* galaxy
+* star system
+* planetary body
+* reference number
+* ordinal numbering
+* schema
+* identifier
+
+---
+
+# Phase 2 – Schema Reference
+
+```
+docs/schemas/
+
+supercluster.md
+galaxy-cluster.md
+galaxy.md
+star-system.md
+star.md
+planet.md
+moon.md
+common.md
+```
+
+Each page follows the same structure.
+
+Example:
+
+```
+Planet Schema
+
+Purpose
+
+JSON Schema
+
+Fields
+
+Enumerations
+
+Relationships
+
+Examples
+
+Validation Rules
+
+Notes
+
+Related Schemas
+```
+
+This consistency makes the documentation easy to navigate.
+
+---
+
+# Phase 3 – Examples
+
+```
+docs/examples/
+
+supercluster.md
+galaxy.md
+star-system.md
+planet.md
+moon.md
+```
+
+Each page explains one or more JSON examples.
+
+For example:
+
+```
+Earth
+
+Location
+
+Identifier
+
+Schema
+
+JSON
+
+Discussion
+```
+
+---
+
+# Phase 4 – Concepts
+
+```
+docs/concepts/
+
+identifiers.md
+
+references.md
+
+hierarchies.md
+
+numbering.md
+
+relationships.md
+```
+
+These pages explain why the standard works the way it does.
+
+---
+
+# Phase 5 – Developer Guide
+
+```
+docs/developers/
+
+validation.md
+
+json-schema.md
+
+references.md
+
+extending.md
+
+versioning.md
+```
+
+Topics include:
+
+* validating documents
+* using `$ref`
+* schema evolution
+* backward compatibility
+
+---
+
+# Phase 6 – API Reference
+
+For an API or package:
+
+```
+docs/reference/
+
+schemas.md
+
+definitions.md
+
+enumerations.md
+
+formats.md
+```
+
+---
+
+# Phase 7 – GitHub Pages Navigation
+
+A navigation structure should look like:
+
+```
+Home
+
+Getting Started
+
+Concepts
+    Hierarchy
+    Numbering Systems
+    References
+    Glossary
+
+Schemas
+    Supercluster
+    Galaxy Cluster
+    Galaxy
+    Star System
+    Star
+    Planet
+    Moon
+    Common Definitions
+
+Examples
+    Supercluster
+    Galaxy
+    Star System
+    Planet
+    Moon
+
+Developers
+    Validation
+    Extending
+    Versioning
+
+Changelog
+```
+
+---
+
+## Documentation Style
+
+Each schema page should use the same template:
+
+```
+Title
+
+Purpose
+
+Hierarchy Position
+
+Schema File
+
+Description
+
+Properties
+
+Validation
+
+Example
+
+Related Schemas
+
+Revision History
+```
+
+This way every page has a familiar structure.
+
+---
+
+## Mermaid Diagrams
+
+GitHub Pages supports Mermaid, which makes the documentation much easier to follow.
+
+Example:
+
+````markdown
+```mermaid
+graph TD
+    SC[Supercluster]
+    GC[Galaxy Cluster]
+    G[Galaxy]
+    SS[Star System]
+    S[Star]
+    P[Planet]
+    M[Moon]
+
+    SC --> GC
+    GC --> G
+    G --> SS
+    SS --> S
+    SS --> P
+    P --> M
+```
+````
+
+No images need to be maintained—the diagram is generated from the text.
+
+---
+
+Future Growth Directions
+
+This is a standards project with documents beyond the schema references:
+
+```
+docs/
+
+specification.md
+architecture.md
+roadmap.md
+contributing.md
+governance.md
+license.md
+```
+
+These documents help contributors understand not just what the schemas define, but why they are designed that way and how changes should be proposed.
+
+This structure scales well from a handful of schemas to a much larger specification without requiring major reorganization later.
