@@ -1,4 +1,4 @@
-```json
+`json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/schema/galaxy.json",
@@ -26,4 +26,4 @@
   },
   "additionalProperties": false
 }
-```
+`
