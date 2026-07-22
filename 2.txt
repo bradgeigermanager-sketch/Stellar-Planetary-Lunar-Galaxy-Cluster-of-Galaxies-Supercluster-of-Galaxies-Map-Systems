@@ -1,0 +1,189 @@
+A documentation site generated with GitHub Pages will give:
+
+* Human-readable explanations of every schema.
+* Links to the authoritative `.schema.json` files.
+* Example JSON documents.
+* Diagrams showing relationships.
+* Cross-links between related schemas.
+* Version history and changelogs.
+* Search (depending on the documentation framework).
+
+For this schema library the project is separated for three audiences:
+
+1. **People learning the model** (documentation).
+2. **Software validating data** (JSON Schemas).
+3. **Developers integrating the schemas** (examples and API/reference material).
+
+## A possible repository layout
+
+```text
+cosmic-reference/
+│
+├── schemas/
+│   ├── common/
+│   ├── superclusters/
+│   ├── galaxy-clusters/
+│   ├── galaxies/
+│   ├── star-systems/
+│   ├── stars/
+│   ├── planets/
+│   └── moons/
+│
+├── examples/
+│   ├── supercluster/
+│   ├── galaxy/
+│   ├── star-system/
+│   ├── planet/
+│   └── moon/
+│
+├── docs/
+│   ├── index.md
+│   ├── hierarchy.md
+│   ├── numbering.md
+│   ├── schemas/
+│   │   ├── supercluster.md
+│   │   ├── galaxy-cluster.md
+│   │   ├── galaxy.md
+│   │   ├── star-system.md
+│   │   ├── star.md
+│   │   ├── planet.md
+│   │   └── moon.md
+│   ├── examples/
+│   └── glossary.md
+│
+└── README.md
+```
+
+---
+
+## Each schema page can follow a consistent template
+
+For example:
+
+```
+Planet Schema
+```
+
+Sections might include:
+
+* Purpose
+* JSON Schema file
+* Description
+* Fields
+* Enumeration values
+* Example document
+* Related schemas
+* Notes
+* Changelog
+
+An example property table:
+
+| Property               | Type    | Required | Description                  |
+| ---------------------- | ------- | -------- | ---------------------------- |
+| superclusterReference  | integer | ✓        | Supercluster identifier      |
+| galaxyClusterReference | integer | ✓        | Cluster identifier           |
+| galaxyReference        | integer | ✓        | Galaxy identifier            |
+| starSystemReference    | integer | ✓        | Star system identifier       |
+| planetaryOrder         | object  | ✓        | Planet numbering information |
+
+---
+
+## Cross-linking
+
+Each page can link to related pages, for example:
+
+```
+Planet
+├── Star System
+├── Star
+├── Moon
+└── Numbering System
+```
+
+This makes the documentation easier to navigate than reading the raw schemas.
+
+---
+
+## Hierarchy documentation
+
+One page could explain the complete object hierarchy:
+
+```
+Observable Universe
+    ↓
+Supercluster
+    ↓
+Galaxy Cluster
+    ↓
+Galaxy
+    ↓
+Star System
+    ↓
+Star
+    ↓
+Planet
+    ↓
+Moon
+```
+
+Another could explain the numbering philosophy:
+
+```
+all_planetary_bodies
+
+Mercury = 1
+Venus   = 2
+Earth   = 3
+Mars    = 4
+```
+
+versus
+
+```
+habitable_planets_only
+
+Earth = 1
+Mars  = 2
+```
+
+(if that's how your system is intended to work).
+
+---
+
+## Example library
+
+Having an `examples/` directory is particularly valuable because it gives developers concrete instances to work with. For example:
+
+```text
+examples/
+    planet/
+        earth.json
+        mars.json
+        kepler-452b.json
+
+    moon/
+        luna.json
+        europa.json
+        titan.json
+```
+
+Each example can be referenced from the corresponding documentation page.
+
+---
+
+GitHub Pages
+
+A documentation generator like MkDocs or Docusaurus allows for features like:
+
+* Left-hand navigation tree
+* Full-text search
+* Previous/next navigation
+* Automatic table of contents
+* Light/dark themes
+* Collapsible sections
+* Syntax highlighting
+* Mermaid diagrams
+* Links to the source `.schema.json` files
+
+cosmic object reference standard
+natural progression: develop a complete documentation site with pages for every schema, a shared glossary, examples, and design notes, while keeping the JSON Schema files as the authoritative machine-readable definitions. That separation keeps the schemas concise and stable while allowing the documentation to provide context, rationale, and usage guidance.
