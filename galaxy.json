@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/galaxy.json",
+  "title": "Galaxy Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference",
+    "galaxyClusterReference",
+    "galaxyReference"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyClusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyReference": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Numerical identifier of the galaxy within the galaxy cluster."
+    }
+  },
+  "additionalProperties": false
+}
