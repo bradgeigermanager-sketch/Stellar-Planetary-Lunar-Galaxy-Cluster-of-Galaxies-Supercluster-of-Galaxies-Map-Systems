@@ -1,0 +1,11 @@
+{
+  "superclusterReference": 1,
+  "galaxyClusterReference": 14,
+  "galaxyReference": 937,
+  "starSystemReference": 27851,
+  "hostPlanet": {
+    "numberingSystem": "all_planetary_bodies",
+    "order": 4
+  },
+  "lunarOrder": 2
+}
