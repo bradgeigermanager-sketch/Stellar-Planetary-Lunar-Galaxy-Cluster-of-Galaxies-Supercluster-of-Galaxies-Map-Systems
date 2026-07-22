@@ -14,6 +14,7 @@ Together, the six schemas describe a complete hierarchy:
 
 A complete reference to a moon, for example, might look like:
 
+'''json
 {
   "superclusterReference": 1,
   "galaxyClusterReference": 14,
@@ -25,6 +26,7 @@ A complete reference to a moon, for example, might look like:
   },
   "lunarOrder": 2
 }
+'''
 
 This approach has two advantages:
 
