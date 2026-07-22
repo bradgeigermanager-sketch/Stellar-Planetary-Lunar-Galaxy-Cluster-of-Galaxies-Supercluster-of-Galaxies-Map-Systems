@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/supercluster.json",
+  "title": "Supercluster Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique numerical identifier for the supercluster."
+    }
+  },
+  "additionalProperties": false
+}
