@@ -1,0 +1,233 @@
+A clean way to model this is to separate the **location hierarchy** (supercluster → galaxy cluster → galaxy → star system) from the **body-specific information** (planet, star, or moon). Below are three JSON Schemas (Draft 2020-12), one for each type of celestial body.
+
+### 1. Planetary Body Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/planetary-body.json",
+  "title": "Planetary Body Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference",
+    "galaxyClusterReference",
+    "galaxyReference",
+    "starSystemReference",
+    "planetaryOrder"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyClusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "starSystemReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "planetaryOrder": {
+      "type": "object",
+      "required": [
+        "numberingSystem",
+        "order"
+      ],
+      "properties": {
+        "numberingSystem": {
+          "type": "string",
+          "enum": [
+            "all_planetary_bodies",
+            "habitable_planets_only"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+Example
+
+```json
+{
+  "superclusterReference": 1,
+  "galaxyClusterReference": 8,
+  "galaxyReference": 142,
+  "starSystemReference": 9135,
+  "planetaryOrder": {
+    "numberingSystem": "all_planetary_bodies",
+    "order": 3
+  }
+}
+```
+
+---
+
+# 2. Stellar Body Schema
+
+This allows identifying stars within multiple-star systems.
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/stellar-body.json",
+  "title": "Stellar Body Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference",
+    "galaxyClusterReference",
+    "galaxyReference",
+    "starSystemReference",
+    "stellarOrder"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyClusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "starSystemReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "stellarOrder": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Numerical order of the star within the star system."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+Example
+
+```json
+{
+  "superclusterReference": 1,
+  "galaxyClusterReference": 8,
+  "galaxyReference": 142,
+  "starSystemReference": 9135,
+  "stellarOrder": 2
+}
+```
+
+---
+
+# 3. Lunar Body Schema
+
+This references both the host planet and the moon's order around it.
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schema/lunar-body.json",
+  "title": "Lunar Body Reference",
+  "type": "object",
+  "required": [
+    "superclusterReference",
+    "galaxyClusterReference",
+    "galaxyReference",
+    "starSystemReference",
+    "hostPlanet",
+    "lunarOrder"
+  ],
+  "properties": {
+    "superclusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyClusterReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "galaxyReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "starSystemReference": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "hostPlanet": {
+      "type": "object",
+      "required": [
+        "numberingSystem",
+        "order"
+      ],
+      "properties": {
+        "numberingSystem": {
+          "type": "string",
+          "enum": [
+            "all_planetary_bodies",
+            "habitable_planets_only"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "lunarOrder": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Order of the moon from its host planet."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+Example
+
+```json
+{
+  "superclusterReference": 1,
+  "galaxyClusterReference": 8,
+  "galaxyReference": 142,
+  "starSystemReference": 9135,
+  "hostPlanet": {
+    "numberingSystem": "all_planetary_bodies",
+    "order": 3
+  },
+  "lunarOrder": 2
+}
+```
+
+## Shared Numbering Hierarchy
+
+All three schemas share the same hierarchical reference structure:
+
+| Level          | Field                    | Example |
+| -------------- | ------------------------ | ------- |
+| Supercluster   | `superclusterReference`  | 1       |
+| Galaxy Cluster | `galaxyClusterReference` | 8       |
+| Galaxy         | `galaxyReference`        | 142     |
+| Star System    | `starSystemReference`    | 9135    |
+
+The body-specific fields then identify the object within that hierarchy:
+
+* **Planetary bodies:** `planetaryOrder` with both the order and the numbering system (`all_planetary_bodies` or `habitable_planets_only`).
+* **Stellar bodies:** `stellarOrder`, identifying the star within a multi-star system.
+* **Lunar bodies:** `hostPlanet` (using the same planetary numbering model) plus `lunarOrder` to identify the moon around its host planet.
+
+This design keeps the schemas consistent while allowing each body type to include only the additional information needed to uniquely identify it.
